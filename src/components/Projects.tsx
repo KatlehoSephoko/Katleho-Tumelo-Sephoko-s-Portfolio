@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, ArrowDown, Github, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Github, X } from "lucide-react";
 import { featuredProject, projects } from "@/lib/data";
 
 type Project = typeof projects[0];
 
-// Combine featured project and regular projects into one carousel list
 const allCarouselProjects = [
   {
     title: featuredProject.title,
@@ -28,29 +27,26 @@ const allCarouselProjects = [
 
 export default function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
   const [filter, setFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
   const categories = ["All", "Networking", "Software", "AI", "Cybersecurity", "Cloud", "IoT"];
   const filteredProjects = projects.filter(p => filter === "All" || p.category.includes(filter));
 
-  // Auto-advance carousel every 5 seconds with a crossfade effect
+  // Smooth crossfade effect timer (changes every 5 seconds)
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % allCarouselProjects.length);
+      setFade(false); // Start fade out
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % allCarouselProjects.length);
+        setFade(true); // Fade back in
+      }, 400); // Duration matches the transition time
     }, 5000);
     return () => clearInterval(timer);
   }, []);
 
   const currentProject = allCarouselProjects[currentIndex];
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + allCarouselProjects.length) % allCarouselProjects.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % allCarouselProjects.length);
-  };
 
   return (
     <section className="py-24 px-6 border-t border-white/5">
@@ -60,8 +56,8 @@ export default function Projects() {
         {/* Carousel Container */}
         <div className="relative rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent overflow-hidden flex flex-col lg:flex-row mb-20 shadow-2xl backdrop-blur-sm min-h-[420px]">
           
-          {/* Content with crossfade transition */}
-          <div key={currentIndex} className="animate-fade-in p-8 lg:p-14 lg:w-1/2 flex flex-col justify-between transition-opacity duration-700">
+          {/* Content with smooth crossfade opacity transition */}
+          <div className={`p-8 lg:p-14 lg:w-1/2 flex flex-col justify-between transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <span className="px-3 py-1 text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full tracking-wider uppercase">
@@ -82,24 +78,17 @@ export default function Projects() {
                 <button className="px-5 py-2.5 bg-white text-zinc-950 font-semibold rounded-lg hover:bg-zinc-200 transition-colors">View Project</button>
                 <a href={currentProject.github} className="px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-lg hover:bg-zinc-800 transition-colors flex items-center gap-2"><Github size={18} /> Source</a>
               </div>
-              
-              {/* Manual Carousel Navigation Controls */}
-              <div className="flex gap-2">
-                <button onClick={handlePrev} className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 transition-colors"><ChevronLeft size={20} /></button>
-                <button onClick={handleNext} className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 transition-colors"><ChevronRight size={20} /></button>
-              </div>
             </div>
           </div>
           
-          {/* Architecture Panel */}
-          <div className="lg:w-1/2 bg-zinc-950/50 border-t lg:border-t-0 lg:border-l border-white/5 p-8 lg:p-14 flex flex-col justify-center font-mono text-sm relative">
+          {/* Architecture Panel with matching crossfade */}
+          <div className={`lg:w-1/2 bg-zinc-950/50 border-t lg:border-t-0 lg:border-l border-white/5 p-8 lg:p-14 flex flex-col justify-center font-mono text-sm relative transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
              <h4 className="text-zinc-500 mb-8 text-center lg:text-left text-xs tracking-widest uppercase">Conceptual Architecture</h4>
-             <div className="space-y-4 max-w-sm mx-auto w-full relative z-10">
-               {currentProject.architecture.map((layer, index) => (
-                 <div key={layer} className="flex flex-col items-center">
-                   <div className="w-full text-center py-3.5 border border-white/5 bg-white/[0.02] backdrop-blur-md rounded-xl text-zinc-300 shadow-lg">{layer}</div>
-                   {index < currentProject.architecture.length - 1 && <ArrowDown className="text-zinc-700 my-2" size={16} />}
+             <div className="space-y-3 max-w-sm mx-auto w-full relative z-10">
+               {currentProject.architecture.map((layer) => (
+                 <div key={layer} className="w-full text-center py-3.5 border border-white/5 bg-white/[0.02] backdrop-blur-md rounded-xl text-zinc-300 shadow-lg">
+                   {layer}
                  </div>
                ))}
              </div>
@@ -109,7 +98,13 @@ export default function Projects() {
                {allCarouselProjects.map((_, idx) => (
                  <button 
                    key={idx} 
-                   onClick={() => setCurrentIndex(idx)} 
+                   onClick={() => {
+                     setFade(false);
+                     setTimeout(() => {
+                       setCurrentIndex(idx);
+                       setFade(true);
+                     }, 300);
+                   }} 
                    className={`h-1.5 rounded-full transition-all ${currentIndex === idx ? 'w-6 bg-emerald-500' : 'w-1.5 bg-zinc-700'}`}
                  />
                ))}
