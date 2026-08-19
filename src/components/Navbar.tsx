@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Download, Github, Linkedin } from 'lucide-react';
+import { Menu, X, Download, Github, Linkedin, ArrowLeft } from 'lucide-react';
 import { personalInfo } from '@/lib/data';
 
 export default function Navbar() {
@@ -45,18 +45,40 @@ export default function Navbar() {
             </a>
           </div>
         </div>
-        <button className="lg:hidden text-zinc-400 hover:text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <button className="lg:hidden text-zinc-400 hover:text-white p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-xl pt-24 px-6 lg:hidden flex flex-col">
+        <div className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-2xl pt-24 px-6 lg:hidden flex flex-col justify-between pb-12">
           <div className="flex flex-col space-y-6 text-xl font-medium">
             {navLinks.map((link) => (
-              <Link key={link.name} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`pb-4 border-b border-white/5 transition-colors ${location.pathname === link.path ? 'text-emerald-400' : 'text-zinc-300 hover:text-white'}`}>
-                {link.name}
+              <Link 
+                key={link.name} 
+                to={link.path} 
+                onClick={() => setMobileMenuOpen(false)} 
+                className={`pb-4 border-b border-white/5 transition-colors flex items-center justify-between ${location.pathname === link.path ? 'text-emerald-400 font-bold' : 'text-zinc-300 hover:text-white'}`}
+              >
+                <span>{link.name}</span>
+                <span className="text-xs font-mono text-zinc-600">0{navLinks.indexOf(link) + 1}</span>
               </Link>
             ))}
+          </div>
+
+          {/* Bottom Action Area with Explicit Close Option */}
+          <div className="space-y-6 pt-6 border-t border-white/10">
+            <div className="flex items-center justify-around">
+              <a href={personalInfo.github} className="text-zinc-400 hover:text-white flex items-center gap-2 text-sm"><Github size={18} /> GitHub</a>
+              <a href={personalInfo.linkedin} className="text-zinc-400 hover:text-white flex items-center gap-2 text-sm"><Linkedin size={18} /> LinkedIn</a>
+            </div>
+            <button 
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-zinc-200 font-medium flex items-center justify-center gap-2 hover:bg-white/10 transition-colors"
+            >
+              <ArrowLeft size={18} /> Close Menu
+            </button>
           </div>
         </div>
       )}
