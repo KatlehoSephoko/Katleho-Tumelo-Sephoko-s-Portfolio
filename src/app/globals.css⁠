@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+/* Base styles for a clean dark theme */
+body {
+  background-color: #09090b; /* zinc-950 */
+  color: #d4d4d8; /* zinc-300 */
+}
+
+/* Custom scrollbar to match the technical aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a; /* zinc-800 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46; /* zinc-700 */
+}
+
+/* Ensure smooth scrolling across the entire document */
+html {
+  scroll-behavior: smooth;
+}
