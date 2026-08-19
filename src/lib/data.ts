@@ -112,40 +112,54 @@ export const education = [
 
 export const certifications = [
   { 
+    name: "Diploma in Computer Networking", 
+    issuer: "Central University of Technology", 
+    category: "Higher Education",
+    file: "/diploma.pdf", 
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/diploma-preview.jpg"
+  },
+  { 
     name: "Microsoft Azure Fundamentals", 
     issuer: "Microsoft", 
     category: "Cloud Computing",
-    file: "/azure-fundamentals.pdf" 
+    file: "/azure-fundamentals.pdf",
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/azure-preview.jpg"
   },
   { 
     name: "Python / Artificial Intelligence", 
     issuer: "Samsung Innovation Campus", 
     category: "AI & Development",
-    file: "/samsung-ai.pdf" 
+    file: "/samsung-ai.pdf", 
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/samsung-preview.jpg"
   },
   { 
     name: "Introduction to IoT", 
     issuer: "Cisco", 
     category: "IoT",
-    file: "/introduction-to-iot.pdf" 
+    file: "/introduction-to-iot.pdf",
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/iot-preview.jpg"
   },
   { 
     name: "Introduction to Cybersecurity", 
     issuer: "Cisco", 
     category: "Cybersecurity",
-    file: "/introduction-to-cybersecurity.pdf" 
+    file: "/introduction-to-cybersecurity.pdf",
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/cyber-preview.jpg"
   },
   { 
     name: "Junior Cybersecurity Analyst", 
     issuer: "Cisco", 
     category: "Cybersecurity",
-    file: "/junior-cybersecurity-analyst.pdf" 
+    file: "/junior-cybersecurity-analyst.pdf",
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/junior-preview.jpg"
   },
   { 
     name: "HTML Essentials", 
     issuer: "Cisco", 
     category: "Web Development",
-    file: "/html-essentials.pdf" 
+    file: "/html-essentials.pdf",
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/html-preview.jpg"
   }
 ];
+
 
