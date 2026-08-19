@@ -126,11 +126,18 @@ export const certifications = [
     image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/azure-preview.jpg"
   },
   { 
-    name: "Python / Artificial Intelligence", 
+    name: "Coding and Programming", 
+    issuer: "Samsung Innovation Campus", 
+    category: "Software Development",
+    file: "/samsung-coding.pdf", 
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/samsung-coding-preview.jpg"
+  },
+  { 
+    name: "Artificial Intelligence", 
     issuer: "Samsung Innovation Campus", 
     category: "AI & Development",
     file: "/samsung-ai.pdf", 
-    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/samsung-preview.jpg"
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/samsung-ai-preview.jpg"
   },
   { 
     name: "Introduction to IoT", 
@@ -161,5 +168,6 @@ export const certifications = [
     image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/html-preview.jpg"
   }
 ];
+
 
 
