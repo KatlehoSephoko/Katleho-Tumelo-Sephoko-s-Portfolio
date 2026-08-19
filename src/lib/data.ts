@@ -111,10 +111,41 @@ export const education = [
 ];
 
 export const certifications = [
-  { name: "Microsoft Azure Fundamentals", issuer: "Microsoft", category: "Cloud Computing" },
-  { name: "Python / Artificial Intelligence", issuer: "Samsung Innovation Campus", category: "AI & Development" },
-  { name: "Introduction to IoT", issuer: "Cisco", category: "IoT" },
-  { name: "Introduction to Cybersecurity", issuer: "Cisco", category: "Cybersecurity" },
-  { name: "Junior Cybersecurity Analyst", issuer: "Cisco", category: "Cybersecurity" },
-  { name: "HTML Essentials", issuer: "Cisco", category: "Web Development" }
+  { 
+    name: "Microsoft Azure Fundamentals", 
+    issuer: "Microsoft", 
+    category: "Cloud Computing",
+    file: "/azure-fundamentals.pdf" 
+  },
+  { 
+    name: "Python / Artificial Intelligence", 
+    issuer: "Samsung Innovation Campus", 
+    category: "AI & Development",
+    file: "/samsung-ai.pdf" 
+  },
+  { 
+    name: "Introduction to IoT", 
+    issuer: "Cisco", 
+    category: "IoT",
+    file: "/introduction-to-iot.pdf" 
+  },
+  { 
+    name: "Introduction to Cybersecurity", 
+    issuer: "Cisco", 
+    category: "Cybersecurity",
+    file: "/introduction-to-cybersecurity.pdf" 
+  },
+  { 
+    name: "Junior Cybersecurity Analyst", 
+    issuer: "Cisco", 
+    category: "Cybersecurity",
+    file: "/junior-cybersecurity-analyst.pdf" 
+  },
+  { 
+    name: "HTML Essentials", 
+    issuer: "Cisco", 
+    category: "Web Development",
+    file: "/html-essentials.pdf" 
+  }
 ];
+
