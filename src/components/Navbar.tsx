@@ -13,6 +13,8 @@ export default function Navbar() {
     { name: "About", path: "/about" },
     { name: "Projects", path: "/projects" },
     { name: "Experience", path: "/experience" },
+    { name: "Education", path: "/education" },
+    { name: "Certs", path: "/certifications" },
     { name: "Contact", path: "/contact" }
   ];
 
@@ -24,12 +26,12 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-[90rem] mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="text-xl font-bold tracking-tighter text-zinc-100 hover:text-emerald-400 transition-colors">
           {personalInfo.initials}
         </Link>
         
-        <div className="hidden md:flex items-center space-x-8 text-sm">
+        <div className="hidden lg:flex items-center space-x-6 text-sm">
           {navLinks.map((link) => (
             <Link key={link.name} to={link.path} className={`font-medium transition-colors ${location.pathname === link.path ? 'text-emerald-400' : 'text-zinc-400 hover:text-white'}`}>
               {link.name}
@@ -43,12 +45,12 @@ export default function Navbar() {
             </a>
           </div>
         </div>
-        <button className="md:hidden text-zinc-400 hover:text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <button className="lg:hidden text-zinc-400 hover:text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col">
+        <div className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-xl pt-24 px-6 lg:hidden flex flex-col">
           <div className="flex flex-col space-y-6 text-xl font-medium">
             {navLinks.map((link) => (
               <Link key={link.name} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`pb-4 border-b border-white/5 transition-colors ${location.pathname === link.path ? 'text-emerald-400' : 'text-zinc-300 hover:text-white'}`}>
