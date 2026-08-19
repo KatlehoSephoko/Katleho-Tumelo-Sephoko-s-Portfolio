@@ -1,12 +1,11 @@
 import { Download, Github, Linkedin, Network, Server, Code, Database } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { personalInfo } from '@/lib/data';
 
 export default function Hero() {
   return (
-    <section id="overview" className="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-[90vh] flex flex-col justify-center relative">
+    <section className="pb-24 px-6 max-w-7xl mx-auto min-h-[85vh] flex flex-col justify-center relative">
       <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        
-        {/* Left Content */}
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md text-emerald-400 text-xs font-mono tracking-widest uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -19,9 +18,9 @@ export default function Hero() {
             {personalInfo.description}
           </p>
           <div className="flex flex-wrap items-center gap-5">
-            <a href="#projects" className="px-7 py-3.5 bg-zinc-100 hover:bg-white text-zinc-950 font-semibold rounded-lg transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+            <Link to="/projects" className="px-7 py-3.5 bg-zinc-100 hover:bg-white text-zinc-950 font-semibold rounded-lg transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
               View Projects
-            </a>
+            </Link>
             <a href="/Katleho-Sephoko-CV.pdf" className="px-7 py-3.5 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 hover:bg-zinc-900/80 rounded-lg transition-all flex items-center gap-2 text-zinc-300 font-medium backdrop-blur-sm">
               <Download size={18} /> Download CV
             </a>
@@ -32,12 +31,9 @@ export default function Hero() {
           </div>
         </div>
         
-        {/* Right Content: Premium Glassmorphism Visual */}
         <div className="hidden lg:flex justify-center items-center h-full">
           <div className="relative w-96 h-96 border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent rounded-3xl backdrop-blur-3xl shadow-2xl flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
-            
-            {/* Architectural Nodes */}
             <div className="relative z-10 flex flex-col items-center gap-6 font-mono text-xs text-zinc-400">
               <div className="flex items-center gap-3 bg-zinc-950/80 border border-zinc-800/80 px-4 py-3 rounded-xl shadow-lg">
                 <Network className="text-emerald-500" size={16} /> NETWORK ROUTING
@@ -57,7 +53,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
