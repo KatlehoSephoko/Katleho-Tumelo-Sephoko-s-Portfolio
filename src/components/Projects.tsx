@@ -53,8 +53,8 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-tight">Featured Work & Architecture</h2>
         
-        {/* Carousel Container */}
-        <div className="relative rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent overflow-hidden flex flex-col lg:flex-row mb-20 shadow-2xl backdrop-blur-sm min-h-[420px]">
+        {/* Carousel Container with a fixed minimum height to lock layout and prevent page jumping */}
+        <div className="relative rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent overflow-hidden flex flex-col lg:flex-row mb-20 shadow-2xl backdrop-blur-sm min-h-[520px]">
           
           {/* Content with smooth crossfade opacity transition */}
           <div className={`p-8 lg:p-14 lg:w-1/2 flex flex-col justify-between transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
