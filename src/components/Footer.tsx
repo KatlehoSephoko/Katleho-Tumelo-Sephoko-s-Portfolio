@@ -14,11 +14,13 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-zinc-400">
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-zinc-400">
           <Link to="/" className="hover:text-emerald-400 transition-colors">Overview</Link>
           <Link to="/about" className="hover:text-emerald-400 transition-colors">About</Link>
           <Link to="/projects" className="hover:text-emerald-400 transition-colors">Projects</Link>
           <Link to="/experience" className="hover:text-emerald-400 transition-colors">Experience</Link>
+          <Link to="/education" className="hover:text-emerald-400 transition-colors">Education</Link>
+          <Link to="/certifications" className="hover:text-emerald-400 transition-colors">Certs</Link>
         </div>
 
         <div className="text-xs text-zinc-600 md:text-right">
