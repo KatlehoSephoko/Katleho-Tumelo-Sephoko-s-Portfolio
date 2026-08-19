@@ -3,45 +3,43 @@ import { skills } from "@/lib/data";
 
 export default function About() {
   return (
-    <section id="about" className="py-20 border-t border-zinc-900 bg-zinc-900/20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-zinc-100 mb-12">Engineering meets software.</h2>
-        <div className="grid lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-1 text-zinc-400 space-y-4 text-lg">
+    <section id="about" className="py-24 border-t border-white/5 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 tracking-tight">Engineering meets software.</h2>
+        
+        <div className="grid lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-5 text-zinc-400 space-y-6 text-lg leading-relaxed">
             <p>I enjoy understanding how systems connect, how they can be built efficiently, and how software can solve practical problems.</p>
-            <p>My approach bridges the gap between the code that runs an application and the underlying network infrastructure that sustains it.</p>
+            <p>My approach bridges the critical gap between the code that runs an application and the underlying network infrastructure that sustains it.</p>
           </div>
-          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-4">
-            <div className="p-6 rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm">
-              <Network className="text-emerald-500 mb-4" />
-              <h3 className="text-zinc-100 font-semibold mb-2">NETWORKING</h3>
-              <p className="text-sm text-zinc-500">Routing • Switching • TCP/IP • Infrastructure</p>
-            </div>
-            <div className="p-6 rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm">
-              <Code className="text-emerald-500 mb-4" />
-              <h3 className="text-zinc-100 font-semibold mb-2">SOFTWARE</h3>
-              <p className="text-sm text-zinc-500">React • TypeScript • Python • Node.js</p>
-            </div>
-            <div className="p-6 rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm">
-              <Server className="text-emerald-500 mb-4" />
-              <h3 className="text-zinc-100 font-semibold mb-2">SYSTEMS</h3>
-              <p className="text-sm text-zinc-500">Linux • OpenStack • Ansible • Automation</p>
-            </div>
-            <div className="p-6 rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm">
-              <Shield className="text-emerald-500 mb-4" />
-              <h3 className="text-zinc-100 font-semibold mb-2">SECURITY</h3>
-              <p className="text-sm text-zinc-500">Network Security • Cybersecurity • Secure Systems</p>
-            </div>
+          
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+            {[
+              { icon: Network, title: "NETWORKING", desc: "Routing • Switching • TCP/IP" },
+              { icon: Code, title: "SOFTWARE", desc: "React • TypeScript • Python" },
+              { icon: Server, title: "SYSTEMS", desc: "Linux • OpenStack • Ansible" },
+              { icon: Shield, title: "SECURITY", desc: "Cybersecurity • Secure Systems" }
+            ].map((card, i) => (
+              <div key={i} className="group p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all hover:border-white/10 backdrop-blur-sm">
+                <card.icon className="text-emerald-500 mb-5 opacity-80 group-hover:opacity-100 transition-opacity" size={28} />
+                <h3 className="text-zinc-100 font-semibold mb-2 tracking-wide">{card.title}</h3>
+                <p className="text-sm text-zinc-500">{card.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
         
-        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="mt-24 grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           {Object.entries(skills).map(([category, items]) => (
             <div key={category}>
-              <h4 className="text-zinc-100 font-mono text-sm mb-4 border-b border-zinc-800 pb-2">{category}</h4>
+              <h4 className="text-white font-mono text-xs uppercase tracking-widest mb-6 flex items-center gap-3">
+                <span className="w-8 h-px bg-zinc-800"></span> {category}
+              </h4>
               <ul className="flex flex-wrap gap-2">
                 {items.map(skill => (
-                  <li key={skill} className="px-2 py-1 text-xs rounded bg-zinc-900 border border-zinc-800 text-zinc-400">{skill}</li>
+                  <li key={skill} className="px-3 py-1.5 text-xs font-medium rounded-md bg-zinc-900/50 border border-zinc-800/80 text-zinc-400 hover:text-zinc-200 transition-colors cursor-default">
+                    {skill}
+                  </li>
                 ))}
               </ul>
             </div>
