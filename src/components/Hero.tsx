@@ -1,5 +1,3 @@
-"use client";
-
 import { Download, Github, Linkedin, ArrowDown } from 'lucide-react';
 import { personalInfo } from '@/lib/data';
 
@@ -7,7 +5,6 @@ export default function Hero() {
   return (
     <section id="overview" className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-[90vh] flex flex-col justify-center">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
-        
         <div>
           <div className="inline-block px-3 py-1 mb-6 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono tracking-wide">
             {personalInfo.role.toUpperCase()}
@@ -34,7 +31,6 @@ export default function Hero() {
         
         <div className="hidden lg:flex justify-center items-center h-full opacity-80">
           <div className="relative w-80 h-80 flex flex-col items-center justify-center font-mono text-xs text-zinc-500 space-y-8">
-             {/* Decorative abstract lines/nodes can be placed here, using text layout for simplicity */}
             <span className="bg-zinc-950 px-4 py-2 border border-zinc-800 rounded">NETWORK</span>
             <ArrowDown size={14} className="text-emerald-500/50" />
             <span className="bg-zinc-950 px-4 py-2 border border-zinc-800 rounded">SYSTEMS</span>
