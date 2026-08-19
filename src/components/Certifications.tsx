@@ -6,33 +6,46 @@ export default function Certifications() {
     <section className="py-24 px-6 relative overflow-hidden flex flex-col items-center">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none"></div>
       
-      <div className="w-full max-w-5xl relative z-10">
+      <div className="w-full max-w-6xl relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 tracking-tight text-center md:text-left">Certifications</h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Changed to a 2-column grid so the PDFs have room to be readable */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {certifications.map(cert => (
-            <div key={cert.name} className="p-8 border border-white/5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all flex flex-col justify-between group backdrop-blur-sm min-h-[200px]">
-              <div>
-                <div className="text-[10px] font-mono text-emerald-500/80 mb-4 tracking-widest uppercase flex items-center gap-2">
+            <div key={cert.name} className="p-6 md:p-8 border border-white/5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] transition-all flex flex-col group backdrop-blur-sm">
+              
+              {/* Header */}
+              <div className="mb-6">
+                <div className="text-[10px] font-mono text-emerald-500/80 mb-3 tracking-widest uppercase flex items-center gap-2">
                   <FileText size={12} />
                   {cert.category}
                 </div>
-                <div className="text-lg font-semibold text-zinc-100 leading-snug mb-5 group-hover:text-white transition-colors">{cert.name}</div>
+                <div className="text-xl font-bold text-zinc-100 leading-snug">{cert.name}</div>
               </div>
               
-              <div className="flex justify-between items-end border-t border-white/5 pt-5 mt-4">
+              {/* Embedded PDF Viewer */}
+              <div className="w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden border border-white/10 mb-6 bg-zinc-950 flex-grow relative">
+                <iframe 
+                  /* The #toolbar=0 hides the gray PDF menus for a cleaner look */
+                  src={`${cert.file}#toolbar=0&navpanes=0&scrollbar=0`} 
+                  className="w-full h-full absolute inset-0"
+                  title={cert.name}
+                />
+              </div>
+              
+              {/* Footer */}
+              <div className="flex justify-between items-center border-t border-white/5 pt-5 mt-auto">
                  <div className="text-sm font-medium text-zinc-500">{cert.issuer}</div>
                  
+                 {/* Fallback button in case they are on a mobile browser that blocks embedded PDFs */}
                  <a 
                    href={cert.file} 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   className="flex items-center gap-2 text-zinc-500 hover:text-emerald-400 transition-colors"
+                   className="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors bg-white/[0.03] hover:bg-white/[0.1] px-4 py-2 rounded-lg border border-white/5"
                  >
-                   <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 transform duration-300">
-                     View PDF
-                   </span>
-                   <ExternalLink size={18} />
+                   <span className="text-xs font-semibold">Open Full Size</span>
+                   <ExternalLink size={16} />
                  </a>
               </div>
             </div>
