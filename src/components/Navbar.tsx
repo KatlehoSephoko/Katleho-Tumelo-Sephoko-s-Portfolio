@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Download, Github, Linkedin } from 'lucide-react';
 import { personalInfo } from '@/lib/data';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navLinks = ["Overview", "About", "Projects", "Experience", "Contact"];
+  const location = useLocation();
+
+  const navLinks = [
+    { name: "Overview", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/projects" },
+    { name: "Experience", path: "/experience" },
+    { name: "Contact", path: "/contact" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -13,25 +22,23 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    setMobileMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/50 py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="text-xl font-bold tracking-tighter text-zinc-100 cursor-pointer hover:text-emerald-400" onClick={() => scrollTo('overview')}>
+        <Link to="/" className="text-xl font-bold tracking-tighter text-zinc-100 hover:text-emerald-400 transition-colors">
           {personalInfo.initials}
-        </div>
+        </Link>
+        
         <div className="hidden md:flex items-center space-x-8 text-sm">
           {navLinks.map((link) => (
-            <button key={link} onClick={() => scrollTo(link.toLowerCase())} className="text-zinc-400 hover:text-emerald-400 font-medium">{link}</button>
+            <Link key={link.name} to={link.path} className={`font-medium transition-colors ${location.pathname === link.path ? 'text-emerald-400' : 'text-zinc-400 hover:text-white'}`}>
+              {link.name}
+            </Link>
           ))}
           <div className="flex items-center space-x-4 pl-4 border-l border-zinc-800">
             <a href={personalInfo.github} className="text-zinc-400 hover:text-white"><Github size={18} /></a>
             <a href={personalInfo.linkedin} className="text-zinc-400 hover:text-white"><Linkedin size={18} /></a>
-            <a href="/Katleho-Sephoko-CV.pdf" className="flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 hover:bg-emerald-900/40 border border-zinc-700 hover:border-emerald-500/50 text-zinc-100">
+            <a href="/Katleho-Sephoko-CV.pdf" className="flex items-center gap-2 px-4 py-2 rounded-md bg-white/[0.03] border border-white/10 hover:bg-white/[0.1] text-zinc-100 transition-all">
               <Download size={14} /> CV
             </a>
           </div>
@@ -41,16 +48,13 @@ export default function Navbar() {
         </button>
       </div>
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-zinc-950/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col">
+        <div className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col">
           <div className="flex flex-col space-y-6 text-xl font-medium">
             {navLinks.map((link) => (
-              <button key={link} onClick={() => scrollTo(link.toLowerCase())} className="text-left text-zinc-300 hover:text-emerald-400 border-b border-zinc-800 pb-4">{link}</button>
+              <Link key={link.name} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`pb-4 border-b border-white/5 transition-colors ${location.pathname === link.path ? 'text-emerald-400' : 'text-zinc-300 hover:text-white'}`}>
+                {link.name}
+              </Link>
             ))}
-          </div>
-          <div className="mt-8 flex gap-4">
-            <a href="/Katleho-Sephoko-CV.pdf" className="flex-1 flex justify-center items-center gap-2 px-4 py-3 rounded-md bg-emerald-600 text-zinc-950 font-bold">
-              <Download size={18} /> Download CV
-            </a>
           </div>
         </div>
       )}
