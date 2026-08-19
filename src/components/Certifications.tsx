@@ -9,7 +9,6 @@ export default function Certifications() {
       <div className="w-full max-w-6xl relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 tracking-tight text-center md:text-left">Certifications</h2>
         
-        {/* Changed to a 2-column grid so the PDFs have room to be readable */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {certifications.map(cert => (
             <div key={cert.name} className="p-6 md:p-8 border border-white/5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] transition-all flex flex-col group backdrop-blur-sm">
@@ -23,28 +22,27 @@ export default function Certifications() {
                 <div className="text-xl font-bold text-zinc-100 leading-snug">{cert.name}</div>
               </div>
               
-              {/* Embedded PDF Viewer */}
-              <div className="w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden border border-white/10 mb-6 bg-zinc-950 flex-grow relative">
-                <iframe 
-                  /* The #toolbar=0 hides the gray PDF menus for a cleaner look */
-                  src={`${cert.file}#toolbar=0&navpanes=0&scrollbar=0`} 
-                  className="w-full h-full absolute inset-0"
-                  title={cert.name}
+              {/* Image Preview using the raw GitHub links */}
+              <div className="w-full h-[250px] md:h-[350px] rounded-xl overflow-hidden border border-white/10 mb-6 bg-zinc-950/50 flex-grow relative flex justify-center items-center p-2">
+                <img 
+                  src={cert.image} 
+                  alt={`${cert.name} Certificate`} 
+                  className="w-full h-full object-contain"
+                  loading="lazy"
                 />
               </div>
               
-              {/* Footer */}
+              {/* Footer with link to the actual PDF */}
               <div className="flex justify-between items-center border-t border-white/5 pt-5 mt-auto">
                  <div className="text-sm font-medium text-zinc-500">{cert.issuer}</div>
                  
-                 {/* Fallback button in case they are on a mobile browser that blocks embedded PDFs */}
                  <a 
                    href={cert.file} 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   className="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors bg-white/[0.03] hover:bg-white/[0.1] px-4 py-2 rounded-lg border border-white/5"
+                   className="flex items-center gap-2 text-zinc-300 hover:text-emerald-400 transition-colors bg-white/[0.05] hover:bg-white/[0.1] px-4 py-2 rounded-lg border border-white/10"
                  >
-                   <span className="text-xs font-semibold">Open Full Size</span>
+                   <span className="text-xs font-semibold">View PDF</span>
                    <ExternalLink size={16} />
                  </a>
               </div>
