@@ -23,7 +23,7 @@ export const featuredProject = {
   badge: "ACTIVE DEVELOPMENT",
   description: "A campus security dispatch console and student panic alert platform focused on real-time safety, accessible interfaces, and rapid response.",
   technologies: ["React", "TypeScript", "Node.js", "Socket.IO", "PostgreSQL", "Tailwind CSS"],
-  architecture: ["Student App", "API Gateway", "WLAN Telemetry", "Database", "Security Console"],
+  architecture: ["Student Panic App", "WebSocket Server", "WLAN Telemetry", "PostgreSQL Database", "Security Dispatch Console"],
   features: ["Live emergency telemetry", "Real-time dispatch management", "Secure user authentication", "WLAN access point integration", "Instant WebSockets communication", "Accessible panic interfaces"],
   github: "#",
   demo: "#"
@@ -34,31 +34,22 @@ export const projects = [
     title: "AfriRide",
     category: "Software / Mobility",
     tech: ["React Native", "TypeScript", "Node.js", "PostgreSQL", "Redis"],
-    description: "A localized South African e-hailing platform concept focused on accessibility, safety, and inclusive mobility."
+    description: "A localized South African e-hailing platform concept focused on accessibility, safety, and inclusive mobility.",
+    architecture: ["React Native Client", "Node.js API Gateway", "Redis Countdown Engine", "PostgreSQL DB"]
   },
   {
     title: "SmartMoney SA",
     category: "FinTech / Software",
     tech: ["React", "Node.js", "PostgreSQL"],
-    description: "Financial literacy platform designed to help users understand and manage personal finance through simulated tools and budgeting modules."
-  },
-  {
-    title: "AI Dance Analysis",
-    category: "AI / Computer Vision",
-    tech: ["Python", "AI", "Computer Vision"],
-    description: "AI-assisted analysis concept for Latin American and Ballroom Dance performance, utilizing pose-estimation."
-  },
-  {
-    title: "Smart Room Automation",
-    category: "IoT",
-    tech: ["ESP32", "Arduino", "Python", "Flask", "Flet"],
-    description: "IoT-based smart room automation system combining hardware sensors, backend services, and a desktop interface."
+    description: "Financial literacy platform designed to help users understand and manage personal finance through simulated tools and budgeting modules.",
+    architecture: ["Frontend Dashboard", "Financial Calculators", "Node.js Backend", "PostgreSQL Storage"]
   },
   {
     title: "Vuka Match Platform",
     category: "AI / Software",
     tech: ["Python", "AI", "CV Parsing", "Databases"],
-    description: "Youth employment platform concept for matching job seekers with opportunities based on intelligent CV parsing and skills analysis."
+    description: "Youth employment platform concept for matching job seekers with opportunities based on intelligent CV parsing and skills analysis.",
+    architecture: ["Candidate Portal", "Python CV Parser", "AI Matching Engine", "Opportunity Database"]
   }
 ];
 
@@ -119,6 +110,13 @@ export const certifications = [
     image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/diploma-preview.jpg"
   },
   { 
+    name: "SANReN Cyber Security Certification", 
+    issuer: "SANReN", 
+    category: "Cybersecurity",
+    file: "/sanren-cybersecurity.pdf", 
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/sanren-preview.jpg"
+  },
+  { 
     name: "Microsoft Azure Fundamentals", 
     issuer: "Microsoft", 
     category: "Cloud Computing",
@@ -151,7 +149,7 @@ export const certifications = [
     issuer: "Cisco", 
     category: "Cybersecurity",
     file: "/introduction-to-cybersecurity.pdf",
-    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/cyber-preview.jpg"
+    image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/junior-preview.jpg"
   },
   { 
     name: "Junior Cybersecurity Analyst", 
@@ -168,6 +166,3 @@ export const certifications = [
     image: "https://raw.githubusercontent.com/KatlehoSephoko/Katleho-Tumelo-Sephoko-s-Portfolio/refs/heads/main/public/html-preview.jpg"
   }
 ];
-
-
-
