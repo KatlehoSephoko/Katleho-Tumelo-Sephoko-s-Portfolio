@@ -6,7 +6,7 @@ export const personalInfo = {
   description: "I’m Katleho Tumelo Sephoko, a Network Engineer and Software Developer passionate about networking, software development, infrastructure, cybersecurity, cloud technologies and solving real-world technical problems.",
   email: "contact@example.com", 
   github: "https://github.com", 
-  linkedin: "https://linkedin.com", 
+  linkedin: "https://www.linkedin.com/in/katleho-sephoko-38b842b9?trk=contact-info", 
 };
 
 export const skills = {
