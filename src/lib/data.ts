@@ -10,13 +10,32 @@ export const personalInfo = {
 };
 
 export const skills = {
-  Networking: ["TCP/IP", "Routing & Switching", "DNS", "DHCP", "SSH", "Network Troubleshooting", "Network Security", "Cisco Networking", "Linux Networking"],
-  Software: ["Python", "JavaScript", "TypeScript", "React", "Node.js", "Express", "Flask", "REST APIs", "PostgreSQL", "Supabase", "Git", "GitHub"],
-  Systems: ["Linux", "Ubuntu", "OpenStack", "Ansible", "Bash", "Virtualization", "Server Administration", "Automation"],
-  Cloud: ["Microsoft Azure", "Cloud Fundamentals", "Infrastructure Concepts", "OpenStack"],
-  Cybersecurity: ["Network Security", "Cybersecurity Fundamentals", "Authentication", "Access Control", "Secure Systems"],
-  IoT: ["ESP32", "Arduino", "Sensors", "IoT", "Hardware/Software Integration"]
+  Networking: [
+    "TCP/IP", "Routing & Switching (Cisco, Juniper)", "LAN/WAN", 
+    "Wi-Fi & CCTV Deployment", "Packet Analysis", "EVE-NG", 
+    "Cisco Packet Tracer", "Wireshark"
+  ],
+  Software: [
+    "React", "Tailwind CSS", "Flutter", "JavaScript", "HTML5", "CSS3", 
+    "Node.js", "Express.js", "PHP", "Python", "C#", "C++", "Java", 
+    "SQL", "XML", "Git/GitHub", "Visual Studio", "WordPress"
+  ],
+  Systems: [
+    "Windows (7–11, Server)", "Linux (Ubuntu/Alpine)", "VMware", 
+    "Docker", "Ansible", "Prometheus", "Grafana", "MS Project"
+  ],
+  Cloud: [
+    "Microsoft Azure", "Supabase", "Vercel", "Hostinger"
+  ],
+  Cybersecurity: [
+    "VPN Infrastructure", "Next-Generation Firewalls", "Network Security", 
+    "Authentication", "Access Control"
+  ],
+  IoT: [
+    "ESP32", "Arduino", "Sensors", "Hardware/Software Integration"
+  ]
 };
+
 
 export const featuredProject = {
   title: "CampusSentry",
