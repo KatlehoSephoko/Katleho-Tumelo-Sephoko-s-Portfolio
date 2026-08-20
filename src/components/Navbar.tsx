@@ -24,21 +24,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock background scrolling when mobile menu is open
+  // Aggressive scroll lock for mobile browsers (iOS Safari & Android Chrome fix)
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none'; // strictly prevents background swiping
     } else {
       document.body.style.overflow = 'unset';
+      document.body.style.touchAction = 'auto';
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.style.touchAction = 'auto';
     };
   }, [mobileMenuOpen]);
 
+  // Auto-close the menu if they tap the logo to go home
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-      <div className="max-w-[90rem] mx-auto px-6 flex items-center justify-between">
+    <nav className={`fixed top-0 w-full z-[100] transition-all duration-300 ${scrolled && !mobileMenuOpen ? 'bg-[#050505]/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
+      <div className="max-w-[90rem] mx-auto px-6 flex items-center justify-between relative z-[101]">
         <Link to="/" className="text-xl font-bold tracking-tighter text-zinc-100 hover:text-emerald-400 transition-colors">
           {personalInfo.initials}
         </Link>
@@ -58,9 +66,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Morphing Toggle Icon */}
+        {/* Morphing Toggle Icon - Extremely high z-index to stay above the solid menu */}
         <button 
-          className="lg:hidden text-zinc-400 hover:text-white p-2 relative z-50 transition-transform duration-300 active:scale-95" 
+          className="lg:hidden text-zinc-400 hover:text-white p-2 relative z-[101] transition-transform duration-300 active:scale-95" 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle Menu"
         >
@@ -68,9 +76,9 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu - Now with a solid background and locked view height */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-2xl pt-24 px-6 lg:hidden flex flex-col justify-between pb-12 overflow-y-auto">
+        <div className="fixed inset-0 z-[90] bg-[#050505] h-[100dvh] pt-24 px-6 lg:hidden flex flex-col justify-between pb-12 overflow-y-auto overscroll-none">
           <div className="flex flex-col space-y-6 text-xl font-medium">
             {navLinks.map((link) => (
               <Link 
@@ -85,7 +93,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="space-y-6 pt-6 border-t border-white/10">
+          <div className="space-y-6 pt-6 border-t border-white/10 mt-auto">
             <div className="flex items-center justify-around">
               <a href={personalInfo.github} className="text-zinc-400 hover:text-white flex items-center gap-2 text-sm"><Github size={18} /> GitHub</a>
               <a href={personalInfo.linkedin} className="text-zinc-400 hover:text-white flex items-center gap-2 text-sm"><Linkedin size={18} /> LinkedIn</a>
