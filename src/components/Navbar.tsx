@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Download, Github, Linkedin, ArrowLeft } from 'lucide-react';
+import { Menu, X, Download, Github, Linkedin } from 'lucide-react';
 import { personalInfo } from '@/lib/data';
 
 export default function Navbar() {
@@ -24,6 +24,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-[90rem] mx-auto px-6 flex items-center justify-between">
@@ -45,14 +57,20 @@ export default function Navbar() {
             </a>
           </div>
         </div>
-        <button className="lg:hidden text-zinc-400 hover:text-white p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+
+        {/* Morphing Toggle Icon */}
+        <button 
+          className="lg:hidden text-zinc-400 hover:text-white p-2 relative z-50 transition-transform duration-300 active:scale-95" 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle Menu"
+        >
+          {mobileMenuOpen ? <X size={24} className="rotate-90 transition-transform duration-300" /> : <Menu size={24} className="rotate-0 transition-transform duration-300" />}
         </button>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-2xl pt-24 px-6 lg:hidden flex flex-col justify-between pb-12">
+        <div className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-2xl pt-24 px-6 lg:hidden flex flex-col justify-between pb-12 overflow-y-auto">
           <div className="flex flex-col space-y-6 text-xl font-medium">
             {navLinks.map((link) => (
               <Link 
@@ -67,18 +85,11 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Bottom Action Area with Explicit Close Option */}
           <div className="space-y-6 pt-6 border-t border-white/10">
             <div className="flex items-center justify-around">
               <a href={personalInfo.github} className="text-zinc-400 hover:text-white flex items-center gap-2 text-sm"><Github size={18} /> GitHub</a>
               <a href={personalInfo.linkedin} className="text-zinc-400 hover:text-white flex items-center gap-2 text-sm"><Linkedin size={18} /> LinkedIn</a>
             </div>
-            <button 
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-zinc-200 font-medium flex items-center justify-center gap-2 hover:bg-white/10 transition-colors"
-            >
-              <ArrowLeft size={18} /> Close Menu
-            </button>
           </div>
         </div>
       )}
